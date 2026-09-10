@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certifications — Sereyratanak Heng</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #ffffff;
+    --surface: #FFFCC7;
+    --line: #E6DEB0;
+    --text: #59322B;
+    --text-muted: #7A5B55;
+    --gold: #4DA394;
+    --teal: #D54751;
+    --highlight: #EF9A48;
+  }
+
+  *{ box-sizing: border-box; }
+
+  body{
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.6;
+    font-size: 17.5px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: var(--teal); text-decoration: none; }
+  a:hover{ text-decoration: underline; }
+
+  h1, h2, h3{ font-family: 'Space Grotesk', sans-serif; font-weight: 600; letter-spacing: -0.01em; }
+
+  /* ---------- TOP HEADER ---------- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #ffffff;
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner{
+    max-width: none;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-mark{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14.5px;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+  .header-nav{ display: flex; gap: 6px; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; justify-content: flex-end; }
+  .header-nav a{
+    font-size: 15.5px;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: color .2s, background .2s;
+    white-space: nowrap;
+  }
+  .header-nav a:hover{ color: var(--text); background: var(--surface); }
+  .header-nav a.active{ color: var(--gold); background: rgba(77,163,148,0.10); }
+  .header-toggle{
+    display: none;
+    background: none;
+    border: 1px solid var(--line);
+    color: var(--text);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 15.5px;
+  }
+  @media (max-width: 900px){
+    .header-nav{
+      position: fixed; top: 60px; left: 0; right: 0; bottom: 0;
+      background: #ffffff; flex-direction: column; padding: 24px;
+      transform: translateX(100%); transition: transform .25s ease;
+    }
+    .header-nav.open{ transform: translateX(0); }
+    .header-nav a{ font-size: 20px; padding: 14px 0; border-bottom: 1px solid var(--line); border-radius: 0; }
+    .header-toggle{ display: block; }
+  }
+
+  .layout{
+    display: flex;
+    max-width: none;
+    padding: 0 40px;
+    align-items: flex-start;
+  }
+
+  /* ---------- SIDEBAR ---------- */
+  .sidebar{
+    width: 300px;
+    flex-shrink: 0;
+    padding: 40px 8px 56px 20px;
+    position: sticky;
+    top: 61px;
+    align-self: flex-start;
+    max-height: calc(100vh - 61px);
+    overflow-y: auto;
+  }
+
+  .sidebar img{
+    width: 150px; height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .sidebar .photo-placeholder{
+    width: 150px; height: 150px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    color: #B5A491;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; font-size: 0.86rem;
+    margin-bottom: 20px;
+  }
+
+  .sidebar h1{ font-size: 1.43rem; margin: 0 0 24px; }
+  .sidebar .role{ color: var(--text-muted); font-size: 0.97rem; margin-bottom: 24px; }
+
+  .sidebar .contact-heading{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.04rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .sidebar .contact-list{ list-style: none; padding: 0; margin: 0; font-size: 0.94rem; }
+  .sidebar .contact-list li{ margin-bottom: 10px; }
+  .sidebar .contact-list span{
+    display: block; font-family: 'JetBrains Mono', monospace;
+    color: #B5A491; font-size: 0.77rem; text-transform: uppercase;
+    letter-spacing: 0.05em; margin-bottom: 2px;
+  }
+  .sidebar .contact-list a{
+    color: var(--gold);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    overflow-wrap: break-word;
+  }
+  .sidebar .contact-list a:hover{
+    color: var(--teal);
+  }
+
+  /* ---------- DIVIDER ---------- */
+  .divider{
+    width: 1px;
+    align-self: stretch;
+    background: var(--line);
+    margin-left: 40px;
+    flex-shrink: 0;
+  }
+
+  /* ---------- MAIN ---------- */
+  main{
+    flex: 1; min-width: 0;
+    padding: 56px 24px 100px 44px;
+  }
+
+  main > p.intro{
+    margin: 0 0 40px; max-width: 640px;
+    color: var(--text-muted); font-size: 17.5px;
+  }
+
+  section{ margin-bottom: 56px; }
+
+  .section-head{ margin-bottom: 28px; }
+  .section-head .index{
+    font-family: 'JetBrains Mono', monospace; font-size: 14px;
+    color: var(--teal); letter-spacing: 0.05em;
+  }
+  .section-head h2{ font-size: 1.65rem; margin: 6px 0 0; }
+  /* ---------- CERTIFICATIONS ---------- */
+  .cert-group{ margin-bottom: 52px; }
+  .cert-group:last-of-type{ margin-bottom: 0; }
+  .cert-group-head{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin: 0 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .cert-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px 24px;
+  }
+  @media (max-width: 980px){
+    .cert-grid{ grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px){
+    .cert-grid{ grid-template-columns: 1fr; }
+  }
+  .cert-card{
+    display: block; text-align: left;
+    background: none; border: 0; padding: 0; margin: 0;
+    font: inherit; color: inherit; cursor: zoom-in;
+    align-self: start;   /* buttons centre their content when stretched as grid items */
+  }
+  .cert-thumb{
+    aspect-ratio: 4 / 3;
+    border-radius: 6px;
+    background: #ffffff;
+    overflow: hidden;
+    transition: box-shadow .2s, transform .2s;
+  }
+  .cert-thumb img{
+    width: 100%; height: 100%;
+    object-fit: contain; display: block;
+  }
+  .cert-card:hover .cert-thumb,
+  .cert-card:focus-visible .cert-thumb{
+    box-shadow: 0 6px 18px rgba(89,50,43,0.10);
+    transform: translateY(-2px);
+  }
+  .cert-card:focus{ outline: none; }
+  .cert-card:focus-visible .cert-thumb{ outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  .cert-tag{
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px; letter-spacing: 0.07em; text-transform: uppercase;
+    color: var(--gold); border: 1px solid var(--gold);
+    border-radius: 3px; padding: 1px 5px; margin-top: 12px;
+  }
+  /* keeps titles on a shared baseline across a row */
+  .cert-tag--spacer{ visibility: hidden; }
+  .cert-card h4{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.01rem; font-weight: 600;
+    margin: 8px 0 0; line-height: 1.35;
+  }
+  .cert-card .cert-issuer{ font-size: 14px; color: var(--teal); font-weight: 500; margin-top: 3px; }
+  .cert-card .cert-date{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px; color: var(--text-muted); margin-top: 3px;
+  }
+
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox{
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(20,23,28,0.90);
+    display: none; align-items: center; justify-content: center;
+    padding: 56px 76px;
+  }
+  .lightbox.open{ display: flex; }
+  .lightbox-inner{ max-width: 1080px; width: 100%; }
+  .lightbox-inner img{
+    width: 100%; max-height: calc(100vh - 190px);
+    object-fit: contain; display: block;
+    background: #fff; border-radius: 4px;
+  }
+  .lightbox-caption{ text-align: center; margin-top: 16px; }
+  .lightbox-caption .lb-title{
+    font-family: 'Space Grotesk', sans-serif; font-size: 1.16rem;
+    color: #fff; display: block;
+  }
+  .lightbox-caption .lb-meta{
+    font-size: 14px; color: #C3C8D0; display: block; margin-top: 4px;
+  }
+  .lightbox-caption .lb-verify{
+    font-family: 'JetBrains Mono', monospace; font-size: 12.5px;
+    color: var(--gold); display: inline-block; margin-top: 8px;
+  }
+  .lightbox button{
+    position: absolute; background: none; cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.35); color: #fff;
+    border-radius: 6px; line-height: 1;
+  }
+  .lightbox button:hover{ border-color: #fff; background: rgba(255,255,255,0.08); }
+  .lightbox-close{ top: 18px; right: 22px; width: 38px; height: 38px; font-size: 21px; }
+  .lightbox-prev, .lightbox-next{ top: 50%; transform: translateY(-50%); width: 40px; height: 54px; font-size: 22px; }
+  .lightbox-prev{ left: 20px; }
+  .lightbox-next{ right: 20px; }
+  .lightbox-count{
+    position: absolute; top: 24px; left: 24px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12.5px;
+    color: #C3C8D0; letter-spacing: 0.05em;
+  }
+  body.lb-open{ overflow: hidden; }
+
+  @media (max-width: 620px){
+    .lightbox{ padding: 64px 14px 90px; }
+    .lightbox-prev, .lightbox-next{ top: auto; bottom: 22px; transform: none; width: 46px; height: 40px; }
+    .lightbox-prev{ left: 50%; margin-left: -52px; }
+    .lightbox-next{ right: 50%; margin-right: -52px; }
+    .lightbox-inner img{ max-height: calc(100vh - 260px); }
+  }
+
+  /* ---------- CERTIFICATIONS PAGE ---------- */
+  .back-link{
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-bottom: 28px; padding: 8px 16px;
+    border: 1px solid var(--line); border-radius: 999px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; color: var(--text-muted);
+    letter-spacing: 0.04em; text-decoration: none;
+    transition: border-color .2s, color .2s, background .2s;
+  }
+  .back-link:hover{
+    border-color: var(--gold); color: var(--gold); background: var(--surface);
+    text-decoration: none;
+  }
+  .page-intro{
+    margin: 0 0 36px; max-width: 620px;
+    color: var(--text-muted); font-size: 16.5px;
+  }
+
+  footer{ color: #B5A491; font-size: 0.9rem; margin-top: 10px; }
+
+  @media (max-width: 760px){
+    .header-inner{ padding: 16px 20px; }
+    .layout{ flex-direction: column; padding: 0; }
+    .divider{ display: none; }
+    .sidebar{
+      width: 100%; position: static;
+      padding: 32px 20px 24px; border-bottom: 1px solid var(--line);
+    }
+    main{ padding: 32px 20px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-mark"><a href="index-classic.html" style="color:inherit">SEREYRATANAK HENG</a></div>
+    <button class="header-toggle" id="headerToggle" aria-label="Toggle navigation">&#9776;</button>
+    <ul class="header-nav" id="headerNav">
+      <li><a href="education.html">Education</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="awards.html">Competitions &amp; Awards</a></li>
+      <li><a href="training.html">Extracurricular Training</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="certifications.html" class="active" aria-current="page">Certifications</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <!-- Replace src below with your photo, e.g. "photo.jpg" placed in the same folder -->
+    <img src="photo.jpg" alt="Sereyratanak Heng" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="photo-placeholder" style="display:none;">Add photo.jpg<br>to this folder</div>
+
+    <h1>Sereyratanak Heng</h1>
+
+    <div class="contact-heading">Contact</div>
+    <ul class="contact-list">
+      <li><span>Email</span><a href="mailto:hengsereyratanak88@gmail.com">hengsereyratanak88<wbr>@gmail.com</a></li>
+      <li><span>Phone</span>(+855) 70 575 178</li>
+      <li><span>Location</span>Phnom Penh, Cambodia</li>
+      <li><span>GitHub</span><a href="https://github.com/SereyratanakHeng" target="_blank" rel="noopener">SereyratanakHeng</a></li>
+      <li><span>LinkedIn</span><a href="https://linkedin.com/in/heng-sereyratanak" target="_blank" rel="noopener">Heng Sereyratanak</a></li>
+    </ul>
+  </aside>
+
+  <div class="divider"></div>
+
+  <main>
+
+    <a class="back-link" href="index-classic.html">&#8592; BACK TO PROFILE</a>
+
+    <section id="certifications">
+      <div class="section-head">
+        <div class="index">07 — CERTIFICATIONS</div>
+        <h2>Certifications</h2>
+      </div>
+
+      <p class="page-intro">Coursera credentials in machine learning, data science, and analytics from Stanford Online &amp; DeepLearning.AI, IBM, Microsoft, and Google. Select any certificate to view it in full.</p>
+
+      <div class="cert-group">
+        <h3 class="cert-group-head">Machine Learning &amp; AI</h3>
+        <div class="cert-grid">
+
+        <button class="cert-card" type="button"
+          data-full="asset/certifications/machine-learning-specialization.jpg"
+          data-title="Machine Learning"
+          data-issuer="DeepLearning.AI &amp; Stanford Online"
+          data-date="Feb 2026"
+          data-tag="Specialization · 3 courses"
+          data-verify="https://coursera.org/verify/specialization/WJAB00AX1IMF">
+          <div class="cert-thumb">
+            <img src="asset/certifications/machine-learning-specialization.jpg" loading="lazy"
+                 alt="Machine Learning specialization certificate from DeepLearning.AI and Stanford Online">
+          </div>
+          <span class="cert-tag">Specialization</span>
+          <h4>Machine Learning</h4>
+          <div class="cert-issuer">DeepLearning.AI &amp; Stanford Online</div>
+          <div class="cert-date">Feb 2026 · 3 courses</div>
+        </button>
+
+        <button class="cert-card" type="button"
+          data-full="asset/certifications/supervised-machine-learning.jpg"
+          data-title="Supervised Machine Learning: Regression and Classification"
+          data-issuer="DeepLearning.AI &amp; Stanford Online"
+          data-date="Aug 2025"
+          data-verify="https://coursera.org/verify/OSE8JZW2BQCY">
+          <div class="cert-thumb">
+            <img src="asset/certifications/supervised-machine-learning.jpg" loading="lazy"
+                 alt="Supervised Machine Learning: Regression and Classification certificate from DeepLearning.AI and Stanford Online">
+          </div>
+          <span class="cert-tag cert-tag--spacer" aria-hidden="true">Course</span>
+          <h4>Supervised Machine Learning: Regression and Classification</h4>
+          <div class="cert-issuer">DeepLearning.AI &amp; Stanford Online</div>
+          <div class="cert-date">Aug 2025</div>
+        </button>
+
+        <button class="cert-card" type="button"
+          data-full="asset/certifications/advanced-learning-algorithms.jpg"
+          data-title="Advanced Learning Algorithms"
+          data-issuer="DeepLearning.AI &amp; Stanford Online"
+          data-date="Nov 2025"
+          data-verify="https://coursera.org/verify/6PM2T9T1YZ87">
+          <div class="cert-thumb">
+            <img src="asset/certifications/advanced-learning-algorithms.jpg" loading="lazy"
+                 alt="Advanced Learning Algorithms certificate from DeepLearning.AI and Stanford Online">
+          </div>
+          <span class="cert-tag cert-tag--spacer" aria-hidden="true">Course</span>
+          <h4>Advanced Learning Algorithms</h4>
+          <div class="cert-issuer">DeepLearning.AI &amp; Stanford Online</div>
+          <div class="cert-date">Nov 2025</div>
+        </button>
+
+        <button class="cert-card" type="button"
+          data-full="asset/certifications/unsupervised-learning-recommenders-rl.jpg"
+          data-title="Unsupervised Learning, Recommenders, Reinforcement Learning"
+          data-issuer="DeepLearning.AI &amp; Stanford Online"
+          data-date="Feb 2026"
+          data-verify="https://coursera.org/verify/GHQJZ0AY1GIJ">
+          <div class="cert-thumb">
+            <img src="asset/certifications/unsupervised-learning-recommenders-rl.jpg" loading="lazy"
+                 alt="Unsupervised Learning, Recommenders, Reinforcement Learning certificate from DeepLearning.AI and Stanford Online">
+          </div>
+          <span class="cert-tag cert-tag--spacer" aria-hidden="true">Course</span>
+          <h4>Unsupervised Learning, Recommenders, Reinforcement Learning</h4>
+          <div class="cert-issuer">DeepLearning.AI &amp; Stanford Online</div>
+          <div class="cert-date">Feb 2026</div>
+        </button>
+
+        </div>
+      </div>
+
+      <div class="cert-group">
+        <h3 class="cert-group-head">Data Science &amp; Analytics</h3>
+        <div class="cert-grid">
+
+        <button class="cert-card" type="button"
+          data-full="asset/certifications/intro-data-science-specialization.jpg"
+          data-title="Introduction to Data Science"
+          data-issuer="IBM"
+          data-date="Apr 2026"
+          data-tag="Specialization · 4 courses"
+          data-verify="https://coursera.org/verify/specialization/YBG1TD38OTD0">
+          <div class="cert-thumb">
+            <img src="asset/certifications/intro-data-science-specialization.jpg" loading="lazy"
+                 alt="Introduction to Data Science specialization certificate from IBM">
+          </div>
+          <span class="cert-tag">Specialization</span>
+          <h4>Introduction to Data Science</h4>
+          <div class="cert-issuer">IBM</div>
+          <div class="cert-date">Apr 2026 · 4 courses</div>
+        </button>
+
+        <button class="cert-card" type="button"
+          data-full="asset/certifications/data-science-methodology.jpg"
+          data-title="Data Science Methodology"
+          data-issuer="IBM"
+          data-date="Apr 2026"
+          data-verify="https://coursera.org/verify/N3YOOHWK000K">
+          <div class="cert-thumb">
+            <img src="asset/certifications/data-science-methodology.jpg" loading="lazy"
+                 alt="Data Science Methodology certificate from IBM">
+          </div>
+          <span class="cert-tag cert-tag--spacer" aria-hidden="true">Course</span>
+          <h4>Data Science Methodology</h4>
+          <div class="cert-issuer">IBM</div>
+          <div class="cert-date">Apr 2026</div>
+        </button>
+
+        <button class="cert-card" type="button"
+          data-full="asset/certifications/databases-sql-python.jpg"
+          data-title="Databases and SQL for Data Science with Python"
+          data-issuer="IBM"
+          data-date="Apr 2026"
+          data-verify="https://coursera.org/verify/ROYE258YH9V2">
+          <div class="cert-thumb">
+            <img src="asset/certifications/databases-sql-python.jpg" loading="lazy"
+                 alt="Databases and SQL for Data Science with Python certificate from IBM">
+          </div>
+          <span class="cert-tag cert-tag--spacer" aria-hidden="true">Course</span>
+          <h4>Databases and SQL for Data Science with Python</h4>
+          <div class="cert-issuer">IBM</div>
+          <div class="cert-date">Apr 2026</div>
+        </button>
+
+        <button class="cert-card" type="button"
+          data-full="asset/certifications/excel-basics-data-analysis.jpg"
+          data-title="Excel Basics for Data Analysis"
+          data-issuer="IBM"
+          data-date="Apr 2026"
+          data-verify="https://coursera.org/verify/AL6BC2H1MM68">
+          <div class="cert-thumb">
+            <img src="asset/certifications/excel-basics-data-analysis.jpg" loading="lazy"
+                 alt="Excel Basics for Data Analysis certificate from IBM">
+          </div>
+          <span class="cert-tag cert-tag--spacer" aria-hidden="true">Course</span>
+          <h4>Excel Basics for Data Analysis</h4>
+          <div class="cert-issuer">IBM</div>
+          <div class="cert-date">Apr 2026</div>
+        </button>
+
+        <button class="cert-card" type="button"
+          data-full="asset/certifications/data-visualization-cognos.jpg"
+          data-title="Data Visualization and Dashboards with Excel and Cognos"
+          data-issuer="IBM"
+          data-date="Apr 2026"
+          data-verify="https://coursera.org/verify/TWTFPW3R6R18">
+          <div class="cert-thumb">
+            <img src="asset/certifications/data-visualization-cognos.jpg" loading="lazy"
+                 alt="Data Visualization and Dashboards with Excel and Cognos certificate from IBM">
+          </div>
+          <span class="cert-tag cert-tag--spacer" aria-hidden="true">Course</span>
+          <h4>Data Visualization and Dashboards with Excel and Cognos</h4>
+          <div class="cert-issuer">IBM</div>
+          <div class="cert-date">Apr 2026</div>
+        </button>
+
+        </div>
+      </div>
+
+      <div class="cert-group">
+        <h3 class="cert-group-head">Business &amp; Project Management</h3>
+        <div class="cert-grid">
+
+        <button class="cert-card" type="button"
+          data-full="asset/certifications/business-analysis-fundamentals.jpg"
+          data-title="Business Analysis Fundamentals"
+          data-issuer="Microsoft"
+          data-date="Apr 2026"
+          data-verify="https://coursera.org/verify/Q2UIA4WG5YOW">
+          <div class="cert-thumb">
+            <img src="asset/certifications/business-analysis-fundamentals.jpg" loading="lazy"
+                 alt="Business Analysis Fundamentals certificate from Microsoft">
+          </div>
+          <span class="cert-tag cert-tag--spacer" aria-hidden="true">Course</span>
+          <h4>Business Analysis Fundamentals</h4>
+          <div class="cert-issuer">Microsoft</div>
+          <div class="cert-date">Apr 2026</div>
+        </button>
+
+        <button class="cert-card" type="button"
+          data-full="asset/certifications/foundations-project-management.jpg"
+          data-title="Foundations of Project Management"
+          data-issuer="Google"
+          data-date="Aug 2026"
+          data-verify="https://coursera.org/verify/Y9PZRFVZ0ZIA">
+          <div class="cert-thumb">
+            <img src="asset/certifications/foundations-project-management.jpg" loading="lazy"
+                 alt="Foundations of Project Management certificate from Google">
+          </div>
+          <span class="cert-tag cert-tag--spacer" aria-hidden="true">Course</span>
+          <h4>Foundations of Project Management</h4>
+          <div class="cert-issuer">Google</div>
+          <div class="cert-date">Aug 2026</div>
+        </button>
+
+        </div>
+      </div>
+
+    </section>
+
+    <footer>Last updated 2026</footer>
+  </main>
+
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Certificate viewer">
+  <div class="lightbox-count" id="lbCount"></div>
+  <button class="lightbox-close" id="lbClose" type="button" aria-label="Close">&#10005;</button>
+  <button class="lightbox-prev" id="lbPrev" type="button" aria-label="Previous certificate">&#8249;</button>
+  <button class="lightbox-next" id="lbNext" type="button" aria-label="Next certificate">&#8250;</button>
+  <div class="lightbox-inner">
+    <img id="lbImage" src="" alt="">
+    <div class="lightbox-caption">
+      <span class="lb-title" id="lbTitle"></span>
+      <span class="lb-meta" id="lbMeta"></span>
+      <a class="lb-verify" id="lbVerify" href="#" target="_blank" rel="noopener">Verify on Coursera &#8599;</a>
+    </div>
+  </div>
+</div>
+<script>
+  // mobile nav toggle
+  const toggle = document.getElementById('headerToggle');
+  const navList = document.getElementById('headerNav');
+  toggle.addEventListener('click', () => navList.classList.toggle('open'));
+  navList.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navList.classList.remove('open')));
+
+  // certificate lightbox
+  const cards = Array.from(document.querySelectorAll('.cert-card'));
+  const lb = document.getElementById('lightbox');
+  const lbImage = document.getElementById('lbImage');
+  const lbTitle = document.getElementById('lbTitle');
+  const lbMeta = document.getElementById('lbMeta');
+  const lbVerify = document.getElementById('lbVerify');
+  const lbCount = document.getElementById('lbCount');
+  let lbIndex = 0;
+  let lastFocused = null;
+
+  function renderCert(i){
+    lbIndex = (i + cards.length) % cards.length;
+    const c = cards[lbIndex].dataset;
+    lbImage.src = c.full;
+    lbImage.alt = c.title + ' certificate';
+    lbTitle.textContent = c.title;
+    lbMeta.textContent = [c.issuer, c.date, c.tag].filter(Boolean).join(' \u00b7 ');
+    lbVerify.href = c.verify;
+    lbCount.textContent = String(lbIndex + 1).padStart(2, '0') + ' / ' + String(cards.length).padStart(2, '0');
+  }
+
+  function openCert(i){
+    lastFocused = document.activeElement;
+    renderCert(i);
+    lb.classList.add('open');
+    document.body.classList.add('lb-open');
+    document.getElementById('lbClose').focus();
+  }
+
+  function closeCert(){
+    lb.classList.remove('open');
+    document.body.classList.remove('lb-open');
+    lbImage.src = '';
+    if(lastFocused) lastFocused.focus();
+  }
+
+  cards.forEach((card, i) => card.addEventListener('click', () => openCert(i)));
+  document.getElementById('lbClose').addEventListener('click', closeCert);
+  document.getElementById('lbPrev').addEventListener('click', () => renderCert(lbIndex - 1));
+  document.getElementById('lbNext').addEventListener('click', () => renderCert(lbIndex + 1));
+  lb.addEventListener('click', e => { if(e.target === lb) closeCert(); });
+
+  document.addEventListener('keydown', e => {
+    if(!lb.classList.contains('open')) return;
+    if(e.key === 'Escape') closeCert();
+    if(e.key === 'ArrowLeft') renderCert(lbIndex - 1);
+    if(e.key === 'ArrowRight') renderCert(lbIndex + 1);
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Experience — Sereyratanak Heng</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #ffffff;
+    --surface: #FFFCC7;
+    --line: #E6DEB0;
+    --text: #59322B;
+    --text-muted: #7A5B55;
+    --gold: #4DA394;
+    --teal: #D54751;
+    --highlight: #EF9A48;
+  }
+
+  *{ box-sizing: border-box; }
+
+  body{
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.6;
+    font-size: 17.5px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: var(--teal); text-decoration: none; }
+  a:hover{ text-decoration: underline; }
+
+  h1, h2, h3{ font-family: 'Space Grotesk', sans-serif; font-weight: 600; letter-spacing: -0.01em; }
+
+  /* ---------- TOP HEADER ---------- */
+  header{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #ffffff;
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner{
+    max-width: none;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-mark{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14.5px;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+  .header-nav{ display: flex; gap: 6px; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; justify-content: flex-end; }
+  .header-nav a{
+    font-size: 15.5px;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: color .2s, background .2s;
+    white-space: nowrap;
+  }
+  .header-nav a:hover{ color: var(--text); background: var(--surface); }
+  .header-nav a.active{ color: var(--gold); background: rgba(77,163,148,0.10); }
+  .header-toggle{
+    display: none;
+    background: none;
+    border: 1px solid var(--line);
+    color: var(--text);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 15.5px;
+  }
+  @media (max-width: 900px){
+    .header-nav{
+      position: fixed; top: 60px; left: 0; right: 0; bottom: 0;
+      background: #ffffff; flex-direction: column; padding: 24px;
+      transform: translateX(100%); transition: transform .25s ease;
+    }
+    .header-nav.open{ transform: translateX(0); }
+    .header-nav a{ font-size: 20px; padding: 14px 0; border-bottom: 1px solid var(--line); border-radius: 0; }
+    .header-toggle{ display: block; }
+  }
+
+  .layout{
+    display: flex;
+    max-width: none;
+    padding: 0 40px;
+    align-items: flex-start;
+  }
+
+  /* ---------- SIDEBAR ---------- */
+  .sidebar{
+    width: 300px;
+    flex-shrink: 0;
+    padding: 40px 8px 56px 20px;
+    position: sticky;
+    top: 61px;
+    align-self: flex-start;
+    max-height: calc(100vh - 61px);
+    overflow-y: auto;
+  }
+
+  .sidebar img{
+    width: 150px; height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .sidebar .photo-placeholder{
+    width: 150px; height: 150px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    color: #B5A491;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; font-size: 0.86rem;
+    margin-bottom: 20px;
+  }
+
+  .sidebar h1{ font-size: 1.43rem; margin: 0 0 24px; }
+  .sidebar .role{ color: var(--text-muted); font-size: 0.97rem; margin-bottom: 24px; }
+
+  .sidebar .contact-heading{
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.04rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .sidebar .contact-list{ list-style: none; padding: 0; margin: 0; font-size: 0.94rem; }
+  .sidebar .contact-list li{ margin-bottom: 10px; }
+  .sidebar .contact-list span{
+    display: block; font-family: 'JetBrains Mono', monospace;
+    color: #B5A491; font-size: 0.77rem; text-transform: uppercase;
+    letter-spacing: 0.05em; margin-bottom: 2px;
+  }
+  .sidebar .contact-list a{
+    color: var(--gold);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    overflow-wrap: break-word;
+  }
+  .sidebar .contact-list a:hover{
+    color: var(--teal);
+  }
+
+  /* ---------- DIVIDER ---------- */
+  .divider{
+    width: 1px;
+    align-self: stretch;
+    background: var(--line);
+    margin-left: 40px;
+    flex-shrink: 0;
+  }
+
+  /* ---------- MAIN ---------- */
+  main{
+    flex: 1; min-width: 0;
+    padding: 56px 24px 100px 44px;
+  }
+
+  main > p.intro{
+    margin: 0 0 40px; max-width: 640px;
+    color: var(--text-muted); font-size: 17.5px;
+  }
+
+  section{ margin-bottom: 56px; }
+
+  .section-head{ margin-bottom: 28px; }
+  .section-head .index{
+    font-family: 'JetBrains Mono', monospace; font-size: 14px;
+    color: var(--teal); letter-spacing: 0.05em;
+  }
+  .section-head h2{ font-size: 1.65rem; margin: 6px 0 0; }
+
+  /* keep long-form rows at a readable measure on very wide screens */
+  .exp-item, .proj-item, .award-item, .skill-row{ max-width: 1240px; }
+
+  /* ---------- EXPERIENCE ---------- */
+  .exp-item{
+    display: grid; grid-template-columns: 150px 1fr; gap: 24px;
+    padding: 24px 0; border-top: 1px solid var(--line);
+  }
+  .exp-item:first-of-type{ border-top: none; padding-top: 0; }
+  .exp-date{ font-family: 'JetBrains Mono', monospace; font-size: 14px; color: var(--text-muted); }
+  .exp-role h3{ font-size: 1.16rem; font-weight: 600; margin: 0; }
+  .exp-org{ color: var(--teal); font-size: 15px; margin-top: 2px; font-weight: 500; }
+  .exp-org a{
+    color: var(--gold);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  .exp-org a:hover{
+    color: var(--teal);
+  }
+  .exp-list{ margin: 12px 0 0; padding: 0; list-style: none; }
+  .exp-list li{
+    position: relative; padding-left: 20px; margin-bottom: 8px;
+    color: var(--text-muted); font-size: 16px;
+  }
+  .exp-list li::before{
+    content: ''; position: absolute; left: 2px; top: 0.6em;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--text-muted);
+  }
+
+  @media (max-width: 700px){
+    .exp-item{ grid-template-columns: 1fr; gap: 8px; }
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .proj-item{
+    display: grid; grid-template-columns: 150px 1fr; gap: 24px;
+    padding: 24px 0; border-top: 1px solid var(--line);
+  }
+  .proj-item:first-of-type{ border-top: none; padding-top: 0; }
+  .proj-item .metric{
+    font-family: 'JetBrains Mono', monospace; font-size: 1.26rem;
+    color: var(--gold); font-weight: 700;
+  }
+  .proj-item .metric-label{ font-size: 14px; color: var(--text-muted); margin-left: 6px; }
+
+  @media (max-width: 700px){
+    .proj-item{ grid-template-columns: 1fr; gap: 8px; }
+  }
+
+  /* ---------- AWARD-STYLE LIST (reused for training) ---------- */
+  .award-item{
+    display: flex; gap: 20px; padding: 22px 0;
+    border-top: 1px solid var(--line); align-items: flex-start;
+  }
+  .award-item:first-of-type{ border-top: none; padding-top: 0; }
+  .award-badge{
+    flex-shrink: 0; width: 52px; height: 52px; border-radius: 50%;
+    border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--gold);
+    text-align: center; font-weight: 700; line-height: 1.2;
+  }
+  .award-content h3{ font-size: 1.1rem; margin: 0; }
+  .award-content .meta{ font-size: 14px; color: var(--teal); margin-top: 2px; font-weight: 500; }
+  .award-content p{ margin: 8px 0 0; color: var(--text-muted); font-size: 16px; max-width: 580px; }
+  /* ---------- SKILLS ---------- */
+  .skill-row{
+    display: grid; grid-template-columns: 170px 1fr; gap: 20px;
+    padding: 16px 0; border-top: 1px solid var(--line);
+    font-size: 16px; align-items: baseline;
+  }
+  .skill-row:first-of-type{ border-top: none; padding-top: 0; }
+  .skill-label{
+    font-family: 'JetBrains Mono', monospace; font-size: 13px;
+    color: var(--teal); text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .skill-value{ color: var(--text-muted); }
+  @media (max-width: 700px){
+    .skill-row{ grid-template-columns: 1fr; gap: 4px; }
+  }
+
+  /* ---------- DETAIL PAGE ---------- */
+  .back-link{
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-bottom: 28px; padding: 8px 16px;
+    border: 1px solid var(--line); border-radius: 999px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; color: var(--text-muted);
+    letter-spacing: 0.04em; text-decoration: none;
+    transition: border-color .2s, color .2s, background .2s;
+  }
+  .back-link:hover{
+    border-color: var(--gold); color: var(--gold); background: var(--surface);
+    text-decoration: none;
+  }
+  footer{ color: #B5A491; font-size: 0.9rem; margin-top: 10px; }
+
+  @media (max-width: 760px){
+    .header-inner{ padding: 16px 20px; }
+    .layout{ flex-direction: column; padding: 0; }
+    .divider{ display: none; }
+    .sidebar{
+      width: 100%; position: static;
+      padding: 32px 20px 24px; border-bottom: 1px solid var(--line);
+    }
+    main{ padding: 32px 20px 60px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-mark"><a href="index-classic.html" style="color:inherit">SEREYRATANAK HENG</a></div>
+    <button class="header-toggle" id="headerToggle" aria-label="Toggle navigation">&#9776;</button>
+    <ul class="header-nav" id="headerNav">
+      <li><a href="education.html">Education</a></li>
+      <li><a href="experience.html" class="active" aria-current="page">Experience</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="awards.html">Competitions &amp; Awards</a></li>
+      <li><a href="training.html">Extracurricular Training</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="certifications.html">Certifications</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <!-- Replace src below with your photo, e.g. "photo.jpg" placed in the same folder -->
+    <img src="photo.jpg" alt="Sereyratanak Heng" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+    <div class="photo-placeholder" style="display:none;">Add photo.jpg<br>to this folder</div>
+
+    <h1>Sereyratanak Heng</h1>
+
+    <div class="contact-heading">Contact</div>
+    <ul class="contact-list">
+      <li><span>Email</span><a href="mailto:hengsereyratanak88@gmail.com">hengsereyratanak88<wbr>@gmail.com</a></li>
+      <li><span>Phone</span>(+855) 70 575 178</li>
+      <li><span>Location</span>Phnom Penh, Cambodia</li>
+      <li><span>GitHub</span><a href="https://github.com/SereyratanakHeng" target="_blank" rel="noopener">SereyratanakHeng</a></li>
+      <li><span>LinkedIn</span><a href="https://linkedin.com/in/heng-sereyratanak" target="_blank" rel="noopener">Heng Sereyratanak</a></li>
+    </ul>
+  </aside>
+
+  <div class="divider"></div>
+
+  <main>
+
+    <a class="back-link" href="index-classic.html">&#8592; BACK TO PROFILE</a>
+
+    <section id="experience">
+      <div class="section-head">
+        <div class="index">02 — WORK</div>
+        <h2>Experience</h2>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">July 2026 – Present</div>
+        <div class="exp-role">
+          <h3>Business Intelligence Officer</h3>
+          <div class="exp-org">DG Academy</div>
+          <ul class="exp-list">
+            <li>Consulted directly with clients to gather business requirements, translating operational pain points into actionable BI system specifications.</li>
+            <li>Built end-to-end BI dashboards and reporting systems using Power BI, Tableau, SQL, and Excel, alongside Python and JavaScript, giving stakeholders real-time visibility into key business metrics.</li>
+            <li>Streamlined data workflows by connecting and cleaning data across multiple sources, replacing manual reporting processes with automated dashboards.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">Dec 2025 – Mar 2026</div>
+        <div class="exp-role">
+          <h3>AI Automation Intern</h3>
+          <div class="exp-org">Big Wall Digital · Singapore, Remote</div>
+          <ul class="exp-list">
+            <li>Delivered two production-ready AI automation systems using n8n: an end-to-end email workflow and a RAG pipeline that let clients query Google Drive documents in plain language.</li>
+            <li>Worked directly with clients to understand their pain points and gather requirements, ensuring each automation solved a real operational problem rather than just a technical one.</li>
+            <li>Documented every workflow, RAG configuration, and process diagram clearly, so the client could maintain and hand off the systems smoothly after the project ended.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-date">Feb 2025 – Jun 2025</div>
+        <div class="exp-role">
+          <h3>Quality Assurance &amp; Data Analyst Intern</h3>
+          <div class="exp-org">Digital Government Committee</div>
+          <ul class="exp-list">
+            <li>Built interactive Power BI dashboards visualizing 15,000+ FormKH data points for leadership performance tracking.</li>
+            <li>Ran end-to-end QA testing and process analysis on the "Likhet" government platform, catching bottlenecks before release.</li>
+            <li>Maintained structured test documentation and collaborated with developers via Git ahead of each deployment.</li>
+          </ul>
+        </div>
+      </div>
+
+    </section>
+
+    <footer>Last updated 2026</footer>
+  </main>
+
+</div>
+
+<script>
+  // mobile nav toggle
+  const toggle = document.getElementById('headerToggle');
+  const navList = document.getElementById('headerNav');
+  toggle.addEventListener('click', () => navList.classList.toggle('open'));
+  navList.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navList.classList.remove('open')));
+</script>
+
+</body>
+</html>
